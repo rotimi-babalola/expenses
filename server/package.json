@@ -28,6 +28,7 @@
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
     "graphql": "^0.13.2",
+    "graphql-date": "^1.0.3",
     "graphql-tools": "^2.24.0",
     "lodash.merge": "^4.6.1",
     "mongoose": "^5.0.15"
