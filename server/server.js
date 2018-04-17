@@ -1,5 +1,6 @@
 import express from 'express';
 import router from './routes';
+import { graphQLRouter } from './routes/graphQLRouter';
 import connect from './db';
 import appConfig from './config';
 import setUpMiddWare from './middleware';

@@ -24,7 +24,8 @@
       "no-console": "warn",
       "no-unused-vars": "warn",
       "comma-dangle": ["error", {
-        "objects": "always-multiline"
+        "objects": "always-multiline",
+        "arrays": "always-multiline"
       }]
   }
 }

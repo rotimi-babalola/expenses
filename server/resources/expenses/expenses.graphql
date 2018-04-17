@@ -1,0 +1,16 @@
+type Expense {
+  id: ID!
+  name: String!
+  category: Category!
+  amount: Int!
+}
+
+enum Category {
+  FOOD
+  TRANSPORT
+  ENTERTAINMENT
+  TRAVEL
+  HEALTH CARE
+  UTILITIES
+  MISCELLANEOUS
+}

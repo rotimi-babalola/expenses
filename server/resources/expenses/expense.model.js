@@ -9,9 +9,16 @@ const ExpenseSchema = new Schema({
   },
   category: {
     type: String,
-    enum: ['Food', 'Transport', 'Entertainment', 'Travel', 'Health care', 'Utilities', 'Miscellaneous'],
+    enum: ['FOOD',
+      'TRANSPORT',
+      'ENTERTAINMENT',
+      'TRAVEL',
+      'HEALTH CARE',
+      'UTILITIES',
+      'MISCELLANEOUS',
+    ],
     required: true,
-    default: 'Miscellaneous',
+    default: 'MISCELLANEOUS',
   },
   amount: {
     type: Number,
