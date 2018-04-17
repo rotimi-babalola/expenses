@@ -1,17 +1,17 @@
 import { GraphQLSchema, GraphQLObjectType, GraphQLList } from 'graphql';
-import ExpenseType from './types/expense.types';
+import ExpenseType from './types/expense.type';
 import Expense from '../models/expense.model';
 
 const RootQueryType = new GraphQLObjectType({
-  name: 'Root Query',
+  name: 'RootQuery',
   description: 'Root Query for expenses API',
   fields: {
-    User: {
+    Expense: {
       type: new GraphQLList(ExpenseType),
       description: 'Expense',
-    },
-    resolve: () => {
-      return Expense.find({}).exec();
+      resolve: () => {
+        return Expense.find({}).exec();
+      },
     },
   },
 });
