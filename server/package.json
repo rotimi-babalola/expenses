@@ -4,7 +4,7 @@
   "description": "GraphQL server for gastos",
   "main": "index.js",
   "scripts": {
-    "start": "babel-watch index.js",
+    "start": "babel-watch server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
