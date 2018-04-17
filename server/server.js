@@ -1,16 +1,20 @@
 import express from 'express';
-import cors from 'cors';
 import router from './routes';
+import connect from './db';
+import appConfig from './config';
+import setUpMiddWare from './middleware';
 
 const app = express();
 
 // middlewares mounted
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+setUpMiddWare(app);
+// connect to DB
+connect();
 
 app.use(router);
 
-const port = process.env.PORT || 5000;
+/* eslint no-undef:0 */
+const port = appConfig.port || 3000;
 
 app.listen(port, () => console.log(`App running on port ${port}`));
+export default app;
