@@ -1,4 +1,9 @@
-import { GraphQLSchema, GraphQLObjectType, GraphQLList, GraphQLString } from 'graphql';
+import {
+  GraphQLSchema,
+  GraphQLObjectType,
+  GraphQLList,
+  GraphQLString
+} from 'graphql';
 import ExpenseType from './types/expense.type';
 import Expense from '../models/expense.model';
 
