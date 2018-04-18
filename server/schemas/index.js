@@ -1,4 +1,4 @@
-import { GraphQLSchema, GraphQLObjectType, GraphQLList } from 'graphql';
+import { GraphQLSchema, GraphQLObjectType, GraphQLList, GraphQLString } from 'graphql';
 import ExpenseType from './types/expense.type';
 import Expense from '../models/expense.model';
 
@@ -9,8 +9,23 @@ const RootQueryType = new GraphQLObjectType({
     Expense: {
       type: new GraphQLList(ExpenseType),
       description: 'Expense',
-      resolve: () => {
-        return Expense.find({}).exec();
+      args: {
+        id: {
+          name: 'expenseId',
+          type: GraphQLString,
+        },
+      },
+      async resolve(_, { id }) {
+        try {
+          if (id) {
+            const expense = await Expense.findById(id).exec();
+            return expense;
+          }
+          const expenses = await Expense.find({}).exec();
+          return expenses;
+        } catch (err) {
+          return err;
+        }
       },
     },
   },

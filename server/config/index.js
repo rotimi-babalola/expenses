@@ -6,7 +6,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 const env = process.env.NODE_ENV;
 
 const baseConfig = {
-  port: 3000,
+  port: 5000,
   secrets: {},
   db: {
     url: 'mongodb://localhost/gastos',

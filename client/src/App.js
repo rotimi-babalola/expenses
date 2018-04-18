@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Api from './services/Api';
 
 class App extends Component {
+  componentDidMount() {
+    Api().get('/').then(response => console.log(response.data));
+  }
   render() {
     return (
       <div className="App">
