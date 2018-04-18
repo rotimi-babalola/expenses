@@ -1,20 +1,31 @@
 import express from 'express';
-import router from './routes';
+import graphqlHTTP from 'express-graphql';
+import expenseSchema from './schemas/index';
 import connect from './db';
 import appConfig from './config';
 import setUpMiddWare from './middleware';
+import router from './routes';
+
 
 const app = express();
 
-// middlewares mounted
+/* eslint no-unused-vars: 0*/
+/* eslint no-console: 0*/
+
+app.use('/graphql', graphqlHTTP(req => ({
+  schema: expenseSchema,
+  graphiql: true,
+})));
+
+// mount middleware
 setUpMiddWare(app);
 // connect to DB
 connect();
 
 app.use(router);
 
-/* eslint no-undef:0 */
-const port = appConfig.port || 3000;
+const port = appConfig.port || 5000;
 
 app.listen(port, () => console.log(`App running on port ${port}`));
+
 export default app;
