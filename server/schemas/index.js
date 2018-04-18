@@ -9,6 +9,7 @@ import ExpenseType from './types/expense.type';
 import Expense from '../models/expense.model';
 import AddExpenseMutation from '../schemas/mutations/add-expense.mutation';
 import EditExpenseMutation from '../schemas/mutations/edit-expense.mutation';
+import DeleteExpenseMutation from '../schemas/mutations/delete-expense.mutation';
 
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQuery',
@@ -45,6 +46,7 @@ const RootMutationType = new GraphQLObjectType({
   fields: () => ({
     AddExpense: AddExpenseMutation,
     EditExpense: EditExpenseMutation,
+    DeleteExpense: DeleteExpenseMutation,
   }),
 });
 

@@ -29,7 +29,7 @@ export default {
       if (newExpense) {
         return newExpense.save();
       }
-      throw new Error('Unable to update');
+      throw new Error('Unable to save');
     } catch (error) {
       return error;
     }
