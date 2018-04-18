@@ -4,8 +4,12 @@ import {
   GraphQLList,
   GraphQLString
 } from 'graphql';
+
 import ExpenseType from './types/expense.type';
 import Expense from '../models/expense.model';
+import AddExpenseMutation from '../schemas/mutations/add-expense.mutation';
+import EditExpenseMutation from '../schemas/mutations/edit-expense.mutation';
+import DeleteExpenseMutation from '../schemas/mutations/delete-expense.mutation';
 
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQuery',
@@ -20,24 +24,35 @@ const RootQueryType = new GraphQLObjectType({
           type: GraphQLString,
         },
       },
-      async resolve(_, { id }) {
+      resolve: async (_, { id }) => {
         try {
           if (id) {
             const expense = await Expense.findById(id).exec();
-            return expense;
+            // putting this in an array becasue we are expecting an array on line 18
+            return [expense];
           }
           const expenses = await Expense.find({}).exec();
           return expenses;
-        } catch (err) {
-          return err;
+        } catch (error) {
+          return error;
         }
       },
     },
   },
 });
 
+const RootMutationType = new GraphQLObjectType({
+  name: 'RootMutationType',
+  fields: () => ({
+    AddExpense: AddExpenseMutation,
+    EditExpense: EditExpenseMutation,
+    DeleteExpense: DeleteExpenseMutation,
+  }),
+});
+
 const ExpenseSchema = new GraphQLSchema({
   query: RootQueryType,
+  mutation: RootMutationType,
 });
 
 export default ExpenseSchema;
