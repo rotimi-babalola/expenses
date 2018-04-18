@@ -3,11 +3,12 @@ import { GraphQLEnumType } from 'graphql';
 export default new GraphQLEnumType({
   name: 'CategoryType',
   values: {
-    FOOD: { value: 'food' },
-    ENTERTAINMENT: { value: 'entertainment' },
-    TRAVEL: { value: 'travel' },
-    HEALTHCARE: { value: 'healthcare' },
-    UTILITIES: { value: 'utilities' },
-    MISCELLANEOUS: { value: 'miscellaneous' },
+    FOOD: { value: 'FOOD' },
+    TRANSPORT: { value: 'TRANSPORT' },
+    ENTERTAINMENT: { value: 'ENTERTAINMENT' },
+    TRAVEL: { value: 'TRAVEL' },
+    HEALTHCARE: { value: 'HEALTHCARE' },
+    UTILITIES: { value: 'UTILITIES' },
+    MISCELLANEOUS: { value: 'MISCELLANEOUS' },
   },
 });
