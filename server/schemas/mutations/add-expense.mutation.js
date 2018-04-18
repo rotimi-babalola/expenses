@@ -19,14 +19,17 @@ const ExpenseInputType = new GraphQLInputObjectType({
 });
 
 export default {
-  type: ExpenseType,
+  type: new GraphQLNonNull(ExpenseType),
   args: {
     input: { type: new GraphQLNonNull(ExpenseInputType) },
   },
-  async resolve(_, { input }) {
+  resolve: async (_, { input }) => {
     try {
       const newExpense = await new Expense(input);
-      return newExpense.save();
+      if (newExpense) {
+        return newExpense.save();
+      }
+      throw new Error('Unable to update');
     } catch (error) {
       return error;
     }
