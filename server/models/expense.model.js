@@ -30,12 +30,30 @@ const ExpenseSchema = new Schema({
   }
 );
 
-ExpenseSchema.statics.findOneOrCreate = function (expense, callback) {
+ExpenseSchema.statics.findOneOrCreate = function (expense) {
   const self = this;
-  self.findOne({ name: expense.name }, (error, result) => {
-    console.log(result, '****');
-    console.log(error, 'error');
-    return result ? callback(error, result) : self.create(expense, (error, result) => { return callback(error, result); });
+  return new Promise((resolve, reject) => {
+    self.findOne({ name: expense.name }, (error, result) => {
+      if (error) {
+        return reject(error);
+      }
+      if (result) {
+        // update amount
+        result.amount += expense.amount;
+        result.save();
+        return resolve({
+          result,
+          isOldExpense: true,
+        });
+      } else {
+        self.create(expense, (err, newExpense) => {
+          if (err) {
+            return reject(err);
+          }
+          resolve(newExpense);
+        });
+      }
+    });
   });
 };
 

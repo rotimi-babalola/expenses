@@ -25,14 +25,10 @@ export default {
   },
   resolve: async (_, { input }) => {
     try {
-      // const newExpense = await new Expense(input);
-      // if (newExpense) {
-      //   return newExpense.save();
-      // }
-      // throw new Error('Unable to save');
-      const newExpense = await Expense.findOneOrCreate(input, (err, result) => {
-        console.log(result, '+++');
-      });
+      const newExpense = await Expense.findOneOrCreate(input);
+      if (newExpense.isOldExpense) {
+        return newExpense.result;
+      }
       return newExpense;
     } catch (error) {
       return error;
