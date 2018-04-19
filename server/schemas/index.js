@@ -28,7 +28,8 @@ const RootQueryType = new GraphQLObjectType({
         try {
           if (id) {
             const expense = await Expense.findById(id).exec();
-            // putting this in an array becasue we are expecting an array on line 18
+            // putting this in an array becasue we are expecting an array
+            // in the Root query
             return [expense];
           }
           const expenses = await Expense.find({}).exec();
