@@ -25,11 +25,11 @@ export default {
   },
   resolve: async (_, { input }) => {
     try {
-      const newExpense = await new Expense(input);
-      if (newExpense) {
-        return newExpense.save();
+      const newExpense = await Expense.findOneOrCreate(input);
+      if (newExpense.isOldExpense) {
+        return newExpense.result;
       }
-      throw new Error('Unable to save');
+      return newExpense;
     } catch (error) {
       return error;
     }
