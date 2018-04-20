@@ -9,37 +9,37 @@ const {
 import { expect } from 'chai';
 import GraphQLDate from 'graphql-date';
 
-import Expense from '../../schemas/types/expense.type';
-import Category from '../../schemas/types/category.type';
+import ExpenseType from '../../schemas/types/expense.type';
+import CategoryType from '../../schemas/types/category.type';
 
-describe('Expense', () => {
+describe('Expense Type', () => {
   it('should have an id field of type ID', () => {
-    expect(Expense.getFields()).to.have.property('id');
-    expect(Expense.getFields().id.type).to.deep.equals(GraphQLID);
+    expect(ExpenseType.getFields()).to.have.property('id');
+    expect(ExpenseType.getFields().id.type).to.deep.equals(GraphQLID);
   });
 
   it('should have a non null name field of type string', () => {
-    expect(Expense.getFields()).to.have.property('name');
-    expect(Expense.getFields().name.type).to.deep.equals(new GraphQLNonNull(GraphQLString));
+    expect(ExpenseType.getFields()).to.have.property('name');
+    expect(ExpenseType.getFields().name.type).to.deep.equals(new GraphQLNonNull(GraphQLString));
   });
 
   it('should have a non null category type field', () => {
-    expect(Expense.getFields()).to.have.property('category');
-    expect(Expense.getFields().category.type).to.deep.equals(new GraphQLNonNull(Category));
+    expect(ExpenseType.getFields()).to.have.property('category');
+    expect(ExpenseType.getFields().category.type).to.deep.equals(new GraphQLNonNull(CategoryType));
   });
 
   it('should have a non null amount field of type float', () => {
-    expect(Expense.getFields()).to.have.property('amount');
-    expect(Expense.getFields().amount.type).to.deep.equals(new GraphQLNonNull(GraphQLFloat));
+    expect(ExpenseType.getFields()).to.have.property('amount');
+    expect(ExpenseType.getFields().amount.type).to.deep.equals(new GraphQLNonNull(GraphQLFloat));
   });
 
   it('should have a createdAt field of type GraphQLDate', () => {
-    expect(Expense.getFields()).to.have.property('createdAt');
-    expect(Expense.getFields().createdAt.type).to.deep.equals(GraphQLDate);
+    expect(ExpenseType.getFields()).to.have.property('createdAt');
+    expect(ExpenseType.getFields().createdAt.type).to.deep.equals(GraphQLDate);
   });
 
   it('should have an updatedAt field of type GraphQLDate', () => {
-    expect(Expense.getFields()).to.have.property('updatedAt');
-    expect(Expense.getFields().updatedAt.type).to.deep.equals(GraphQLDate);
+    expect(ExpenseType.getFields()).to.have.property('updatedAt');
+    expect(ExpenseType.getFields().updatedAt.type).to.deep.equals(GraphQLDate);
   });
 });

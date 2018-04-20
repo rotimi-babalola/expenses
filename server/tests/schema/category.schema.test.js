@@ -1,10 +1,10 @@
 import { expect } from 'chai';
-import Category from '../../schemas/types/category.type';
+import CategoryType from '../../schemas/types/category.type';
 
-describe('Category', () => {
+describe('Category Type', () => {
   // because Category is an enum type we use getValues
   // destructure category.getValues() array
-  // P.S This is awesome 😎
+  // P.S. This is awesome 😎
   const [food,
     transport,
     entertainment,
@@ -12,7 +12,7 @@ describe('Category', () => {
     healthcare,
     utilities,
     miscellaneous,
-  ] = Category.getValues();
+  ] = CategoryType.getValues();
 
   it('should have the food field in the enum type', () => {
     expect(food).to.have.property('name');
