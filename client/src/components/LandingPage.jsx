@@ -1,7 +1,11 @@
 import React from 'react';
 import { Button } from '.';
+import Api from '../services';
 
 const handleClick = async () => {
+  Api().get('/')
+    .then((response) => console.log(response))
+    .catch((err) => console.log(err));
   console.log('Button has been clicked');
 }
 
