@@ -9,8 +9,8 @@ const {
 import chai from 'chai';
 import GraphQLDate from 'graphql-date';
 
-import Expense from '../schemas/types/expense.type';
-import Category from '../schemas/types/category.type';
+import Expense from '../../schemas/types/expense.type';
+import Category from '../../schemas/types/category.type';
 
 const expect = chai.expect;
 
