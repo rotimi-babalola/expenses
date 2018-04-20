@@ -6,13 +6,11 @@ const {
   GraphQLFloat,
 } = require('graphql');
 
-import chai from 'chai';
+import { expect } from 'chai';
 import GraphQLDate from 'graphql-date';
 
 import Expense from '../../schemas/types/expense.type';
 import Category from '../../schemas/types/category.type';
-
-const expect = chai.expect;
 
 describe('Expense', () => {
   it('should have an id field of type ID', () => {
