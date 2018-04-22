@@ -1,6 +1,7 @@
 import supertest from 'supertest';
 import { expect } from 'chai';
 import app from '../../server';
+import { dropDb } from '../helpers/testHelpers';
 
 const server = supertest.agent(app);
 
@@ -26,18 +27,25 @@ const newExpenseMutation = {
 
 describe.only('Expense server', () => {
 
+  beforeEach(async () => {
+    await dropDb();
+  });
+
+  afterEach(async () => {
+    await dropDb();
+  });
+
   it('should create an expense', () => {
     server.post('/graphql')
       .send(newExpenseMutation)
       .expect(200)
       .end((error, response) => {
-        console.log(response, '+++');
-        // const { AddExpense } = response.body.data;
-        // console.log('AddExpense');
-        // expect(AddExpense).to.have.property('id`');
-        // expect(AddExpense).to.have.property('name');
-        // expect(AddExpense).to.have.property('category');
-        // expect(AddExpense).to.have.property('amount');
+        const { AddExpense } = response.body.data;
+        console.log(AddExpense, '+++');
+        expect(AddExpense).to.have.property('id`');
+        expect(AddExpense).to.have.property('name');
+        expect(AddExpense).to.have.property('category');
+        expect(AddExpense).to.have.property('amount');
       });
   });
 });
