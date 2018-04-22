@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-watch server.js",
-    "test": "mocha --require babel-core/register tests/**/*.test.js"
+    "test": "NODE_ENV=test mocha --require babel-core/register tests/**/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -48,7 +48,6 @@
     "eslint-plugin-flowtype": "^2.46.2",
     "eslint-plugin-import": "^2.11.0",
     "mocha": "^5.1.1",
-    "sinon": "^4.5.0",
-    "sinon-chai": "^3.0.0"
+    "supertest": "^3.0.0"
   }
 }

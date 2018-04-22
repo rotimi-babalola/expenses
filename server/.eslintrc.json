@@ -26,6 +26,7 @@
       "comma-dangle": ["error", {
         "objects": "always-multiline",
         "arrays": "always-multiline"
-      }]
+      }],
+      "quote-props": ["error", "as-needed"]
   }
 }
