@@ -41,8 +41,7 @@ describe.only('Expense server', () => {
       .expect(200)
       .end((error, response) => {
         const { AddExpense } = response.body.data;
-        console.log(AddExpense, '+++');
-        expect(AddExpense).to.have.property('id`');
+        expect(AddExpense).to.have.property('id');
         expect(AddExpense).to.have.property('name');
         expect(AddExpense).to.have.property('category');
         expect(AddExpense).to.have.property('amount');
