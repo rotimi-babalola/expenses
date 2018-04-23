@@ -16,9 +16,6 @@ let oldExpense;
 const editExpenseAmount = 20000;
 const editExpenseName = 'Romantic dinner';
 
-const newExpenseName = 'Travel to Spain';
-const newExpenseAmount = 7000;
-
 const anotherNewExpenseName = 'some expense';
 const anotherNewExpenseAmount = 5000;
 
@@ -60,22 +57,12 @@ describe('Expense server', () => {
     await dropDb();
   });
 
-  // I'm wondering if it neccesary to create
-  // another expense or if we can test the one
-  // create in the before hook 🤔
   it('should create an expense', () => {
-    server.post('/graphql')
-      .send(createNewExpenseMutation(newExpenseName, newExpenseAmount))
-      .expect(200)
-      .end((error, response) => {
-        const { AddExpense } = response.body.data;
-        expenseId = AddExpense.id;
-        expect(response.status).to.equal(200);
-        expect(AddExpense).to.have.property('id');
-        expect(AddExpense).to.have.property('name');
-        expect(AddExpense).to.have.property('category');
-        expect(AddExpense).to.have.property('amount');
-      });
+    expect(oldExpense).to.have.property('id');
+    expect(oldExpense).to.have.property('name');
+    expect(oldExpense).to.have.property('category');
+    expect(oldExpense).to.have.property('amount');
+
   });
 
   it('should add new amount if an expense with an old name is created', () => {
@@ -95,6 +82,7 @@ describe('Expense server', () => {
       .send(createNewEditExpenseMutation(expenseId, {
         amount: editExpenseAmount,
         name: editExpenseName,
+        category: 'UTILITIES',
       }))
       .expect(200)
       .end((error, response) => {
@@ -105,23 +93,23 @@ describe('Expense server', () => {
         // only the amount and name fields were updated
         // check to ensure the other fields are intact
         expect(EditExpense.id).to.equal(oldExpense.id);
-        expect(EditExpense.category).to.equal(oldExpense.category);
+        expect(EditExpense.category).to.equal('UTILITIES');
       });
   });
 
   // TEMPORARILY COMMENTING THIS OUT
-  // it('should fail to edit for an invalid category', () => {
-  //   server.post('/graphql')
-  //     .send(createNewEditExpenseMutation(expenseId, {
-  //       amount: editExpenseAmount,
-  //       name: editExpenseName,
-  //       category: 'invalid',
-  //     }))
-  //     .expect(500)
-  //     .end((error, response) => {
-  //       expect(response.status).to.equal(500);
-  //     });
-  // });
+  it('should fail to edit for an invalid category', () => {
+    server.post('/graphql')
+      .send(createNewEditExpenseMutation(expenseId, {
+        amount: editExpenseAmount,
+        name: editExpenseName,
+        category: 'invalid',
+      }))
+      .expect(500)
+      .end((error, response) => {
+        expect(response.status).to.equal(500);
+      });
+  });
 
   // it('should delete an expense', () => {
   //   server.post('/graphql')
