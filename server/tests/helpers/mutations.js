@@ -1,5 +1,6 @@
-export const newExpenseMutation = {
-  query: `
+export const createNewExpenseMutation = (expenseName, amount, category = 'TRAVEL') => {
+  return {
+    query: `
     mutation addExpense($input: ExpenseInput!) {
       AddExpense(input: $input) {
         id
@@ -9,33 +10,14 @@ export const newExpenseMutation = {
       }
     }
   `,
-  variables: {
-    input: {
-      name: 'Travel to Spain',
-      category: 'TRAVEL',
-      amount: 7000,
+    variables: {
+      input: {
+        name: expenseName,
+        category,
+        amount,
+      },
     },
-  },
-};
-
-export const testExpenseMutation = {
-  query: `
-    mutation addExpense($input: ExpenseInput!) {
-      AddExpense(input: $input) {
-        id
-        name
-        category
-        amount
-      }
-    }
-  `,
-  variables: {
-    input: {
-      name: 'Travel to Spain',
-      category: 'TRAVEL',
-      amount: 7000,
-    },
-  },
+  };
 };
 
 export const createNewEditExpenseMutation = (expenseId, { amount, name, category }) => {
@@ -57,6 +39,19 @@ export const createNewEditExpenseMutation = (expenseId, { amount, name, category
         name,
         category,
       },
+    },
+  };
+};
+
+export const deleteExpenseMutation = (expenseId) => {
+  return {
+    query: `
+      mutation deleteExpense($id: String!) {
+        DeleteExpense(expenseId: $id)
+      }
+    `,
+    variables: {
+      id: expenseId,
     },
   };
 };
