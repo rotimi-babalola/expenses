@@ -34,7 +34,10 @@ describe('Expense server', () => {
   // to get an expenseId we can use for updating and deleting
   before((done) => {
     server.post('/graphql')
-      .send(createNewExpenseMutation(anotherNewExpenseName, anotherNewExpenseAmount))
+      .send(createNewExpenseMutation(
+        anotherNewExpenseName,
+        anotherNewExpenseAmount
+      ))
       .end((error, response) => {
         const { AddExpense } = response.body.data;
         oldExpense = AddExpense;
@@ -89,14 +92,17 @@ describe('Expense server', () => {
 
   it('should edit an expense', () => {
     server.post('/graphql')
-      .send(createNewEditExpenseMutation(expenseId, { amount: editExpenseAmount, name: editExpenseName }))
+      .send(createNewEditExpenseMutation(expenseId, {
+        amount: editExpenseAmount,
+        name: editExpenseName,
+      }))
       .expect(200)
       .end((error, response) => {
         const { EditExpense } = response.body.data;
         expect(response.status).to.equal(200);
         expect(EditExpense.amount).to.equal(editExpenseAmount);
         expect(EditExpense.name).to.equal(editExpenseName);
-        // only the amount and name fields were updated 
+        // only the amount and name fields were updated
         // check to ensure the other fields are intact
         expect(EditExpense.id).to.equal(oldExpense.id);
         expect(EditExpense.category).to.equal(oldExpense.category);
@@ -105,11 +111,13 @@ describe('Expense server', () => {
 
   it('should fail to edit for an invalid category', () => {
     server.post('/graphql')
-      .send(createNewEditExpenseMutation(expenseId, { amount: editExpenseAmount, name: editExpenseName, category: 'invalid' }))
+      .send(createNewEditExpenseMutation(expenseId, {
+        amount: editExpenseAmount,
+        name: editExpenseName,
+        category: 'invalid',
+      }))
       .expect(500)
       .end((error, response) => {
-        console.log(error, 'error');
-        console.log(response, 'response');
         expect(response.status).to.equal(500);
       });
   });
