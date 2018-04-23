@@ -22,12 +22,16 @@ const newExpenseAmount = 7000;
 const anotherNewExpenseName = 'some expense';
 const anotherNewExpenseAmount = 5000;
 
-describe.only('Expense server', () => {
+const expenseName1 = 'another expense';
+const expenseAmount1 = 6000;
+
+describe('Expense server', () => {
 
   before(async () => {
     await dropDb();
   });
 
+  // to get an expenseId we can use for updating and deleting
   before((done) => {
     server.post('/graphql')
       .send(createNewExpenseMutation(anotherNewExpenseName, anotherNewExpenseAmount))
@@ -35,6 +39,16 @@ describe.only('Expense server', () => {
         const { AddExpense } = response.body.data;
         oldExpense = AddExpense;
         expenseId = AddExpense.id;
+        done();
+      });
+  });
+
+
+  // to get an expense we can use to test the adding amount feature
+  before((done) => {
+    server.post('/graphql')
+      .send(createNewExpenseMutation(expenseName1, expenseAmount1))
+      .end(() => {
         done();
       });
   });
@@ -63,13 +77,13 @@ describe.only('Expense server', () => {
 
   it('should add new amount if an expense with an old name is created', () => {
     server.post('/graphql')
-      .send(createNewExpenseMutation(anotherNewExpenseName, anotherNewExpenseAmount))
+      .send(createNewExpenseMutation(expenseName1, expenseAmount1))
       .expect(200)
       .end((error, response) => {
         const { AddExpense } = response.body.data;
         expect(response.status).to.equal(200);
-        expect(AddExpense.amount).to.equal(anotherNewExpenseAmount * 2);
-        expect(AddExpense.name).to.equal('some expense');
+        expect(AddExpense.amount).to.equal(expenseAmount1 * 2);
+        expect(AddExpense.name).to.equal(expenseName1);
       });
   });
 
