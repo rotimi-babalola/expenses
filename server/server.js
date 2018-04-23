@@ -4,6 +4,8 @@ import expenseSchema from './schemas/index';
 import connect from './db';
 import setUpMiddWare from './middleware';
 import router from './routes';
+import appConfig from './config';
+const port = appConfig.port || 5000;
 
 
 const app = express();
@@ -22,5 +24,7 @@ setUpMiddWare(app);
 connect();
 
 app.use(router);
+
+app.listen(port, () => console.log(`App running on port ${port}`));
 
 export default app;

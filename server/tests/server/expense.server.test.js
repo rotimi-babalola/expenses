@@ -27,11 +27,11 @@ const newExpenseMutation = {
 
 describe.only('Expense server', () => {
 
-  beforeEach(async () => {
+  before(async () => {
     await dropDb();
   });
 
-  afterEach(async () => {
+  after(async () => {
     await dropDb();
   });
 
@@ -41,6 +41,7 @@ describe.only('Expense server', () => {
       .expect(200)
       .end((error, response) => {
         const { AddExpense } = response.body.data;
+        expect(response.status).to.equal(200);
         expect(AddExpense).to.have.property('id');
         expect(AddExpense).to.have.property('name');
         expect(AddExpense).to.have.property('category');
