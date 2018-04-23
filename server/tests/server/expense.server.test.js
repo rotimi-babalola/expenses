@@ -108,6 +108,8 @@ describe('Expense server', () => {
       .send(createNewEditExpenseMutation(expenseId, { amount: editExpenseAmount, name: editExpenseName, category: 'invalid' }))
       .expect(500)
       .end((error, response) => {
+        console.log(error, 'error');
+        console.log(response, 'response');
         expect(response.status).to.equal(500);
       });
   });
