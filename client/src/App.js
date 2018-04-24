@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Button } from './components';
+import { Button, Tabs } from './components';
 
 class App extends Component {
 
@@ -10,7 +10,8 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Gastos</h1>
         </header>
-        <Button style={{ marginTop: '10px' }}>Sample</Button>
+        <Tabs />
+        <Button style={{ marginTop: '10px' }}>Add Expense</Button>
       </div>
     );
   }
