@@ -97,7 +97,6 @@ describe('Expense server', () => {
       });
   });
 
-  // TEMPORARILY COMMENTING THIS OUT
   it('should fail to edit for an invalid category', () => {
     server.post('/graphql')
       .send(createNewEditExpenseMutation(expenseId, {
@@ -111,14 +110,14 @@ describe('Expense server', () => {
       });
   });
 
-  // it('should delete an expense', () => {
-  //   server.post('/graphql')
-  //     .send(deleteExpenseMutation(expenseId))
-  //     .expect(200)
-  //     .end((error, response) => {
-  //       const { DeleteExpense } = response.body.data;
-  //       expect(response.status).to.equal(200);
-  //       expect(DeleteExpense).to.equal('Successfully deleted!');
-  //     });
-  // });
+  it('should delete an expense', () => {
+    server.post('/graphql')
+      .send(deleteExpenseMutation(expenseId))
+      .expect(200)
+      .end((error, response) => {
+        const { DeleteExpense } = response.body.data;
+        expect(response.status).to.equal(200);
+        expect(DeleteExpense).to.equal('Successfully deleted!');
+      });
+  });
 });
