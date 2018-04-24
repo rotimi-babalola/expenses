@@ -27,6 +27,7 @@
         "objects": "always-multiline",
         "arrays": "always-multiline"
       }],
-      "quote-props": ["error", "as-needed"]
+      "quote-props": ["error", "as-needed"],
+      "object-shorthand": ["error", "always"]
   }
 }
