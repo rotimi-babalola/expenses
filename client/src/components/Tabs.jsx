@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import './Tabs.css';
 
 class Tabs extends Component {
@@ -8,65 +8,52 @@ class Tabs extends Component {
 
     this.state = {
       selectedOption: 'tab1',
+      activeTabIndex: this.props.defaultActiveTabIndex, // hard code for now
     };
+    this.handleTabChange = this.handleTabChange.bind(this);
   }
 
-  handleOptionChanged = (event) => {
+  handleTabChange(tabIndex) {
     this.setState({
-      selectedOption: event.target.value,
+      activeTabIndex: tabIndex === this.state.activeTabIndex ? this.props.defaultActiveTabIndex : tabIndex,
     });
+  }
+
+  renderChildrenWithTabsApiAsProps() {
+    return React.Children.map(this.props.children, (child, index) => {
+      return React.cloneElement(child, {
+        onChange: this.handleTabChange,
+        tabIndex: index,
+        isChecked: index === this.state.activeTabIndex,
+      });
+    });
+  }
+
+  renderActiveTabContent() {
+    const { children } = this.props;
+    const { activeTabIndex } = this.state;
+    if (children[activeTabIndex]) {
+      return children[activeTabIndex].props.children;
+    }
   }
 
   render() {
     return (
       <main>
-        <input
-          type="radio"
-          id="tab1"
-          name="tabs"
-          value="tab1"
-          checked={this.state.selectedOption === 'tab1'}
-          onChange={this.handleOptionChanged}/>
-        <label htmlFor="tab1">Codepen</label>
-
-        <input
-          type="radio"
-          id="tab2"
-          name="tabs"
-          value="tab2"
-          checked={this.state.selectedOption === 'tab2'}
-          onChange={this.handleOptionChanged}/>
-        <label htmlFor="tab2">Dribble</label>
-
-        <input
-          type="radio"
-          id="tab3"
-          name="tabs"
-          value="tab3"
-          checked={this.state.selectedOption === 'tab3'}
-          onChange={this.handleOptionChanged}/>
-        <label htmlFor="tab3">DropBox</label>
-
-        <section id="content1">
-          <p>
-            Jo soc un nen
-          </p>
-        </section>
-
-        <section id="content2">
-          <p>
-            Falas Portugues?
-          </p>
-        </section>
-
-        <section id="content3">
-          <p>
-            Tengo tres gatas
-          </p>
-        </section>
+        {this.renderChildrenWithTabsApiAsProps()}
+        {this.renderActiveTabContent()}
       </main>
     );
   }
 }
+
+Tabs.propTypes = {
+  defaultActiveTabIndex: PropTypes.number,
+  children: PropTypes.array,
+};
+
+Tabs.defaultProps = {
+  defaultActiveTabIndex: 0,
+};
 
 export default Tabs;
