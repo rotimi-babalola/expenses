@@ -10,10 +10,11 @@ class Tabs extends Component {
       selectedOption: 'tab1',
       activeTabIndex: this.props.defaultActiveTabIndex, // hard code for now
     };
-    this.handleTabChange = this.handleTabChange.bind(this);
+    // this.handleTabChange = this.handleTabChange.bind(this);
   }
 
-  handleTabChange(tabIndex) {
+  handleTabChange = (tabIndex) => {
+    console.log(tabIndex, 'I am here');
     this.setState({
       activeTabIndex: tabIndex === this.state.activeTabIndex ? this.props.defaultActiveTabIndex : tabIndex,
     });
@@ -22,7 +23,7 @@ class Tabs extends Component {
   renderChildrenWithTabsApiAsProps() {
     return React.Children.map(this.props.children, (child, index) => {
       return React.cloneElement(child, {
-        onChange: this.handleTabChange,
+        handleTabChange: this.handleTabChange,
         tabIndex: index,
         isChecked: index === this.state.activeTabIndex,
       });

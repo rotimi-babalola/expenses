@@ -11,10 +11,10 @@ class App extends Component {
           <h1 className="App-title">Gastos</h1>
         </header>
         <Tabs>
-          <Tab>
+          <Tab icon={'fab fa-twitter-square'} label="Primero">
             <p>hello</p>
           </Tab>
-          <Tab>
+          <Tab icon={'fab fa-twitter-square'} label="Segundo">
             <p>hellkd=</p>
           </Tab>
         </Tabs>
