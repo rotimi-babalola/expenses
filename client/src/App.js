@@ -15,7 +15,7 @@ class App extends Component {
             <p>hello</p>
           </Tab>
           <Tab icon={'fab fa-twitter-square'} label="Segundo">
-            <p>hellkd=</p>
+            <p>hellkd</p>
           </Tab>
         </Tabs>
         <Button style={{ marginTop: '10px' }}>Add Expense</Button>

@@ -2,17 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Tab = (props) => {
-  // console.log(props, 'props');
   return (
     <React.Fragment>
       <input
-        type="radio"
-        id={`tab${props.tabIndex}`}
-        name="tabs"
-        value={`tab${props.tabIndex}`}
-        checked={props.isChecked}
-        onChange={() => console.log('rotimi') } />
-      <label>
+          type="radio"
+          id={`tab${props.tabIndex}`}
+          name="tabs"
+          value={`tab${props.tabIndex}`}
+          checked={props.isChecked}
+          onChange={props.setActiveTab} />
+      <label htmlFor={`tab${props.tabIndex}`}>
         {props.label}
         <i className={props.icon}></i>
       </label>
@@ -28,7 +27,7 @@ Tab.propTypes = {
   children: PropTypes.object.isRequired,
   label: PropTypes.string.isRequired,
   icon: PropTypes.string,
-  handleTabChange: PropTypes.func,
+  setActiveTab: PropTypes.func,
   tabIndex: PropTypes.number,
 };
 
