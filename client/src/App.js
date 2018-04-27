@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Button, Tabs, Tab } from './components/index';
+import {
+  Button,
+  Tabs,
+  Tab,
+  ListItem,
+  List
+} from './components/index';
 
 class App extends Component {
 
@@ -16,10 +22,25 @@ class App extends Component {
             icon={'far fa-credit-card'}
             label="Expense"
             iconStyle={iconStyle}>
-            <p>hello</p>
+            <List>
+              <ListItem
+                headline="Expense 1"
+                icon="far fa-credit-card"
+                secondaryText={
+                  <p>
+                    <span>Grace Ng</span> --
+                    Do you have Paris recommendations? Have you ever been?
+                  </p>
+                }
+              />
+              <ListItem headline="oi" />
+            </List>
           </Tab>
           <Tab icon={'fas fa-chart-line'} label="Analytics" iconStyle={iconStyle}>
-            <p>hellkd</p>
+            <List>
+              <ListItem headline="Soy feliz" />
+              <ListItem headline="Tengo 21 años" />
+            </List>
           </Tab>
         </Tabs>
         <Button style={{ marginTop: '10px' }}>Add Expense</Button>

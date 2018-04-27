@@ -9,6 +9,7 @@
 main {
   min-width: 320px;
   max-width: 800px;
+  height: auto;
   padding: 50px;
   margin: 0 auto;
   background: #fff;

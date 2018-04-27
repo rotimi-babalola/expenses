@@ -33,6 +33,7 @@
     }],
     "quote-props": ["error", "as-needed"],
     "object-shorthand": ["error", "always"],
-    "object-curly-spacing": ["error", "always"]
+    "object-curly-spacing": ["error", "always"],
+    "eol-last": ["error", "always"]
   }
 }
