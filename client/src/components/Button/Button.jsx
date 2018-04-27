@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import theme from '../common/theme';
+import theme from '../../common/theme';
 
 
 const Button = (props) => {

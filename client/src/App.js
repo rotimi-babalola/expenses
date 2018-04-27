@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Button, Tabs, Tab } from './components';
+import { Button, Tabs, Tab } from './components/index';
 
 class App extends Component {
 

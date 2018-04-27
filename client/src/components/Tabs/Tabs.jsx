@@ -7,7 +7,7 @@ class Tabs extends Component {
     super(props);
 
     this.state = {
-      activeTabIndex: props.defaultActiveTabIndex, // hard code for now
+      activeTabIndex: props.defaultActiveTabIndex,
     };
   }
 
