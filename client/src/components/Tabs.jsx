@@ -9,7 +9,6 @@ class Tabs extends Component {
     this.state = {
       activeTabIndex: props.defaultActiveTabIndex, // hard code for now
     };
-    // this.handleTabChange = this.handleTabChange.bind(this);
   }
 
   setActiveTab = (tabIndex) => {
@@ -40,7 +39,7 @@ class Tabs extends Component {
 
   render() {
     return (
-      <main>
+      <main style={this.props.style}>
         {this.renderChildrenWithTabsApiAsProps()}
         {this.renderActiveTabContent()}
       </main>
@@ -51,6 +50,7 @@ class Tabs extends Component {
 Tabs.propTypes = {
   defaultActiveTabIndex: PropTypes.number,
   children: PropTypes.array,
+  style: PropTypes.object,
 };
 
 Tabs.defaultProps = {

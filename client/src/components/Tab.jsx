@@ -11,9 +11,9 @@ const Tab = (props) => {
           value={`tab${props.tabIndex}`}
           checked={props.isChecked}
           onChange={props.setActiveTab} />
-      <label htmlFor={`tab${props.tabIndex}`}>
+      <label htmlFor={`tab${props.tabIndex}`} style={props.labelStyle}>
+        <i className={props.icon} style={props.iconStyle}/>
         {props.label}
-        <i className={props.icon}></i>
       </label>
       <section>
         {props.children}
@@ -29,6 +29,8 @@ Tab.propTypes = {
   icon: PropTypes.string,
   setActiveTab: PropTypes.func,
   tabIndex: PropTypes.number,
+  labelStyle: PropTypes.object,
+  iconStyle: PropTypes.object,
 };
 
 export default Tab;
