@@ -1,6 +1,7 @@
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
 import cors from 'cors';
+import corsOptions from './corsOptions';
 import expenseSchema from './schemas/index';
 import connect from './db';
 import setUpMiddWare from './middleware';
@@ -14,7 +15,7 @@ const app = express();
 /* eslint no-unused-vars: 0*/
 /* eslint no-console: 0*/
 
-app.use('/graphql', graphqlHTTP(req => ({
+app.use('/graphql', cors(corsOptions), graphqlHTTP(req => ({
   schema: expenseSchema,
   graphiql: true,
 })));
