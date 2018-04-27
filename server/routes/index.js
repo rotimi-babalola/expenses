@@ -3,7 +3,7 @@ import cors from 'cors';
 
 const whitelist = ['http://localhost:3000', 'http://localhost:5000'];
 const corsOptions = {
-  origin: function (origin, callback) {
+  origin(origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {

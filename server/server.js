@@ -1,5 +1,6 @@
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
+import cors from 'cors';
 import expenseSchema from './schemas/index';
 import connect from './db';
 import setUpMiddWare from './middleware';
@@ -22,6 +23,8 @@ app.use('/graphql', graphqlHTTP(req => ({
 setUpMiddWare(app);
 // connect to DB
 connect();
+
+app.use(cors());
 
 app.use(router);
 
