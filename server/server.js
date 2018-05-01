@@ -13,9 +13,11 @@ const port = appConfig.port || 5000;
 const app = express();
 
 /* eslint no-unused-vars: 0*/
-/* eslint no-console: 0*/
 
-app.use('/graphql', cors(corsOptions), graphqlHTTP(req => ({
+// the position of this middleware es muy importante 😭😅
+app.use(cors());
+
+app.use('/graphql', graphqlHTTP(req => ({
   schema: expenseSchema,
   graphiql: true,
 })));
@@ -24,8 +26,6 @@ app.use('/graphql', cors(corsOptions), graphqlHTTP(req => ({
 setUpMiddWare(app);
 // connect to DB
 connect();
-
-app.use(cors());
 
 app.use(router);
 
