@@ -28,6 +28,7 @@
         "arrays": "always-multiline"
       }],
       "quote-props": ["error", "as-needed"],
-      "object-shorthand": ["error", "always"]
+      "object-shorthand": ["error", "always"],
+      "eol-last": ["error", "always"]
   }
 }
