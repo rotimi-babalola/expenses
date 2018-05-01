@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
-import gql from 'graphql-tag';
 
 import './index.css';
 import App from './App';
@@ -14,18 +13,11 @@ const client = new ApolloClient({
 });
 
 
-client
-  .query({
-    query: gql`
-      {
-        Expense {
-          id
-          name
-        }
-      }
-    `,
-  })
-  .then(result => console.log(result));
+const WrappedApp = () => (
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>
+);
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<WrappedApp />, document.getElementById('root'));
 registerServiceWorker();

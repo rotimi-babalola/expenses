@@ -7,6 +7,7 @@ import {
   ListItem,
   List
 } from './components/index';
+import FooComp from './components/FooComp.jsx';
 
 class App extends Component {
 
@@ -43,6 +44,7 @@ class App extends Component {
             </List>
           </Tab>
         </Tabs>
+        <FooComp />
         <Button style={{ marginTop: '10px' }}>Add Expense</Button>
       </div>
     );
