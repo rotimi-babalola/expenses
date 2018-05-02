@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
+import { Button } from 'antd';
 import './App.css';
-import {
-  Button,
-  Tabs,
-  Tab,
-  ListItem,
-  List
-} from './components/index';
-import FooComp from './components/FooComp.jsx';
 
 class App extends Component {
 
   render() {
-    const { iconStyle } = this.getStyles();
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Gastos</h1>
         </header>
-        <Tabs style={{ marginTop: '10px' }}>
+        {/* <Tabs style={{ marginTop: '10px' }}>
           <Tab
             icon={'far fa-credit-card'}
             label="Expense"
@@ -44,8 +36,8 @@ class App extends Component {
             </List>
           </Tab>
         </Tabs>
-        <FooComp />
-        <Button style={{ marginTop: '10px' }}>Add Expense</Button>
+        <FooComp /> */}
+        <Button type='primary' style={{ marginTop: '10px' }}>Button</Button>
       </div>
     );
   }
